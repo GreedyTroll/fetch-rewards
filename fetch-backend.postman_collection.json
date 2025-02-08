@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "614f2540-550a-468a-9557-22858df0dbfa",
+		"name": "fetch backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38658778"
+	},
+	"item": [
+		{
+			"name": "post receipt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"",
+							"// Parse the response body as JSON ",
+							"var response = pm.response.json(); ",
+							"",
+							"var id = response.id;",
+							"// Set the value as an environment variable ",
+							"pm.environment.set(\"id\", id);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"retailer\": \"Target\",\n  \"purchaseDate\": \"2022-01-01\",\n  \"purchaseTime\": \"13:01\",\n  \"items\": [\n    {\n      \"shortDescription\": \"Mountain Dew 12PK\",\n      \"price\": \"6.49\"\n    },{\n      \"shortDescription\": \"Emils Cheese Pizza\",\n      \"price\": \"12.25\"\n    },{\n      \"shortDescription\": \"Knorr Creamy Chicken\",\n      \"price\": \"1.26\"\n    },{\n      \"shortDescription\": \"Doritos Nacho Cheese\",\n      \"price\": \"3.35\"\n    },{\n      \"shortDescription\": \"   Klarbrunn 12-PK 12 FL OZ  \",\n      \"price\": \"12.00\"\n    }\n  ],\n  \"total\": \"35.35\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/receipts/process",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"receipts",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get point",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"",
+							"pm.test(\"points are correct\", function() {",
+							"    var res = pm.response.json()",
+							"    pm.expect(res.points).to.be.equal(28);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/receipts/{{id}}/points",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"receipts",
+						"{{id}}",
+						"points"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post receipt #2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"",
+							"// Parse the response body as JSON ",
+							"var response = pm.response.json(); ",
+							"",
+							"var id = response.id;",
+							"// Set the value as an environment variable ",
+							"pm.environment.set(\"id\", id);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n  \"retailer\": \"M&M Corner Market\",\n  \"purchaseDate\": \"2022-03-20\",\n  \"purchaseTime\": \"14:33\",\n  \"items\": [\n    {\n      \"shortDescription\": \"Gatorade\",\n      \"price\": \"2.25\"\n    },{\n      \"shortDescription\": \"Gatorade\",\n      \"price\": \"2.25\"\n    },{\n      \"shortDescription\": \"Gatorade\",\n      \"price\": \"2.25\"\n    },{\n      \"shortDescription\": \"Gatorade\",\n      \"price\": \"2.25\"\n    }\n  ],\n  \"total\": \"9.00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/receipts/process",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"receipts",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get point #2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"",
+							"pm.test(\"points are correct\", function() {",
+							"    var res = pm.response.json()",
+							"    pm.expect(res.points).to.be.equal(109);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/receipts/{{id}}/points",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"receipts",
+						"{{id}}",
+						"points"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}
